@@ -1,0 +1,9 @@
+The Bloom filter is a generic data structure that checks whether an element exists in a set.
+Its algorithm is designed very fast, at risk of false positive return.
+
+Cassandra uses bloom filters to test whether any SSTables are likely to contain the requested partition key, without actually reading them (and thus preventing expensive IO operations). Slow).
+
+If a bloom filter is returned incorrect for a specified partition key, it is clear that the partition key is not present in the corresponding SSTable.
+If true, SSTable probably contains the partition key.
+When this happens, Cassandra will resort to more sophisticated techniques to determine if she needs to read the SSTable. Note that bloom filters are advisable for most reads, and are only updated in some writings (when a note is thrown to the disc). You can read more about Cassandra's reading path here.
+
