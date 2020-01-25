@@ -5,7 +5,7 @@ Cassandra uses bloom filters to test whether any SSTables are likely to contain 
 
 If a bloom filter is returned incorrect for a specified partition key, it is clear that the partition key is not present in the corresponding SSTable.
 If true, SSTable probably contains the partition key.
-When this happens, Cassandra will resort to more sophisticated techniques to determine if she needs to read the SSTable. Note that bloom filters are advisable for most reads, and are only updated in some writings (when a note is thrown to the disc). You can read more about Cassandra's reading path here.
+When this happens, Cassandra will resort to more sophisticated techniques to determine if she needs to read the SSTable. Note that bloom filters are advisable for most reads, and are only updated in some writings (when a note is thrown to the disc).
 
 Two important points :
 1) The first sentence ("Structure stored in memory that checks if there is any row data before accessing SSTables on disk") IMHO is not accurate: Bloom filters when a Memtable is sprayed to disk, in fact Are updated. Don't mention the note.
